@@ -40,10 +40,10 @@ function resty() {
 
   case "$method" in
     GET|DELETE|POST|PUT)
-      dat=$( ( [ "${method#P}" != "$method" ] \
+      dat=$( ( [ "GET" != "$method" ] \
         && ( ( [ -n "$1" ] && [ "${1#-}" == "$1" ] && echo "$1") \
         || echo "@-") ) || echo)
-      if [ "${method#P}" != "$method" ] && [ "$1" == "-V" ]; then
+      if [ "GET" != "$method" ] && [ "$1" == "-V" ]; then
         tmpf=$(mktemp /tmp/resty.XXXXXX)
         cat > $tmpf
         (exec < /dev/tty; "$editor" $tmpf)
